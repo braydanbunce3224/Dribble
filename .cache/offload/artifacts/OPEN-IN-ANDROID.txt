@@ -1,0 +1,40 @@
+Dribble 2026 — Android project for Google Play
+=============================================
+
+This zip is the Android app. Google Play will not accept a build from this chat.
+You sign and upload it from Android Studio with a Play Console account.
+
+What's inside
+-------------
+Dribble-2026-Android/
+  android/           ← Gradle project (open this folder in Android Studio)
+  store/listing.txt
+  store/icons/
+
+On your computer
+----------------
+1. Unzip this file.
+
+2. Install Android Studio (https://developer.android.com/studio).
+
+3. File → Open → Dribble-2026-Android/android
+
+4. Let Gradle sync. If it asks for an SDK, install API 35 / the prompted version.
+
+5. Build → Generate Signed App Bundle / APK
+   - Android App Bundle (.aab) for Play
+   - Create a new upload keystore if you do not have one. Keep that keystore.
+   - applicationId: com.dribble2026.app
+     Change it under android/app/build.gradle if you need an ID you own.
+
+6. In Play Console (https://play.google.com/console):
+   - Create app: Dribble 2026
+   - Category: Sports game
+   - Content rating: everyone / 3+
+   - Privacy policy URL: host privacy.html on HTTPS
+   - Data safety: no data collected (saves stay on device)
+   - Upload the .aab
+   - Paste store/listing.txt
+   - High-res icon: store/icons/icon-512.png
+
+You cannot skip Android Studio / a keystore. This sandbox cannot sign a Play upload.

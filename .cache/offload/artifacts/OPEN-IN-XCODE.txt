@@ -1,0 +1,52 @@
+Dribble 2026 — Xcode project for App Store upload
+=================================================
+
+This zip is the iOS app. Apple will not accept a build from this chat.
+You upload it from a Mac with Xcode and a paid Apple Developer account ($99/year).
+
+What's inside
+-------------
+Dribble-2026-iOS/
+  ios/App/App.xcodeproj     ← open THIS in Xcode
+  store/listing.txt         ← App Store description
+  store/icons/icon-1024.png ← App Store icon
+  native/www/client/privacy.html
+
+On your Mac
+-----------
+1. Unzip this file.
+
+2. Install Xcode from the Mac App Store, open it once, and install additional
+   components if it asks.
+
+3. Open:
+     Dribble-2026-iOS/ios/App/App.xcodeproj
+
+4. In Xcode, select the App target → Signing & Capabilities
+   - Check "Automatically manage signing"
+   - Team: your Apple Developer team
+   - Bundle ID: com.dribble2026.app
+     Change this to an ID you own (example: com.yourname.dribble2026)
+     if that ID is already taken.
+
+5. Product → Destination → Any iOS Device (arm64)
+   Product → Archive
+
+6. When the Organizer opens: Distribute App → App Store Connect → Upload.
+
+7. In App Store Connect (https://appstoreconnect.apple.com):
+   - New app: Dribble 2026
+   - Category: Games / Sports
+   - Age rating: 4+
+   - Privacy policy URL: host privacy.html on any HTTPS site and paste the link
+   - Paste store/listing.txt into the listing
+   - Upload store/icons/icon-1024.png as the App Store icon
+   - Export compliance: No (standard encryption only) — Info.plist already
+     sets ITSAppUsesNonExemptEncryption = false
+   - Tracking: No
+   - Data collected: none (saves stay on the player's phone)
+
+You cannot skip the Mac. Linux and Windows cannot produce an App Store IPA.
+
+Schools in the game are facsimile names (Lexington, Durham, Chapel Hill…) so
+the listing does not use university or NCAA trademarks.

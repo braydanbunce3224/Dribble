@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Dribble",
+      "hasCanvas": false,
+      "bodyTextLen": 109,
+      "bodyTextHash": "e3552ceabfad9f7dec54784315e6eb65ecce3a1631cdd724d9e18bd45d425cf2",
+      "bodyTextPrefix": "Dribble LOADING CAREER PICK A SCHOOL ERAS LOAD GAME HALL OF FAME",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Dribble",
+      "hasCanvas": false,
+      "bodyTextLen": 109,
+      "bodyTextHash": "e3552ceabfad9f7dec54784315e6eb65ecce3a1631cdd724d9e18bd45d425cf2",
+      "bodyTextPrefix": "Dribble LOADING CAREER PICK A SCHOOL ERAS LOAD GAME HALL OF FAME",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

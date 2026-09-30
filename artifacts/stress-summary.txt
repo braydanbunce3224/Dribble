@@ -1,0 +1,17 @@
+release-invariants EXIT 0
+release-probe EXIT 0
+store-ready EXIT 0
+era-check EXIT 0
+conf-debug EXIT 0
+select-audit EXIT 0
+ranks-check EXIT 0
+box-check EXIT 0
+score-check EXIT 0
+recap-check EXIT 0
+portal-check EXIT 0
+college-check EXIT 0
+depth-check EXIT 1
+contract-check EXIT 0
+chemistry-check EXIT 0
+compliance-check EXIT 0
+stuck-debug EXIT 0

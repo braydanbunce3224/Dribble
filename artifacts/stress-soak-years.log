@@ -1,0 +1,17 @@
+— soak 1: Lexington, assisted recruiting, 5 seasons —
+Y1 2026 27-7 conf 10-4 1 West champ baylor offers 8 commits 4 games 34
+Y2 2027 30-5 conf 11-3 1 East champ texas-tech
+Y3 2028 19-13 conf 8-6 NIT champ texas-tech
+Y4 2029 24-9 conf 10-4 5 East champ ucla
+Y5 2030 29-8 conf 11-3 2 Midwest champ houston
+— soak 2: career mid-major, manual recruit, 2 seasons —
+CAREER New Britain 2026 13-18 conf 9-7 home champ florida
+CAREER Y2 2027 14-17 conf 9-7 home champ michigan
+— soak 3: 1980s era one season —
+ERA 1980 1980 23-10 conf 12-6 5 East champ tennessee
+— soak 4: names pack mid-dynasty —
+CHAMPS houston, michigan, tennessee
+LINES 2026 27-7 conf 10-4 1 West champ baylor || 2027 30-5 conf 11-3 1 East champ texas-tech || 2028 19-13 conf 8-6 NIT champ texas-tech || 2029 24-9 conf 10-4 5 East champ ucla || 2030 29-8 conf 11-3 2 Midwest champ houston
+ISSUES 0
+SOAK OK
+EXIT:0

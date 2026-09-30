@@ -1,0 +1,419 @@
+HOOPS HERO - EVERY SET OF UPDATES YOU ASKED FOR
+================================================
+College basketball dynasty sim
+Compiled: September 6, 2026
+Each block is one set of updates you requested, in the order they landed.
+
+
+----------------------------------------------------------------
+SET 1 - THE ORIGINAL GAME
+----------------------------------------------------------------
+- Standalone college basketball dynasty sim (first called The Program)
+- All 365 Division I programs
+- Prestige ratings, recruiting, possession-based simulation
+- Full NCAA tournament with Selection Sunday and a bracket
+- Play up to 100 seasons as a coach
+- Historical records
+- No login required; playable as a public app
+- Later renamed Hoops Hero
+
+
+----------------------------------------------------------------
+SET 2 - STARTING A CAREER
+----------------------------------------------------------------
+- Title screen with only the game name and button options
+- Uploaded arena photo as the home / title-screen background
+- Cover art changed to the uploaded picture
+- Career mode: first jobs limited to lower-tier / lower-prestige schools
+- Pick a school (dynasty): any of the 365 programs
+- Eras mode on the main menu: start a career in any decade
+    * Real-world results from that decade drive team ratings / prestige
+    * NIL off in every era except the 2020s
+    * No 3-point line before 1986
+    * Conference membership accurate to the selected decade only
+    * Career / Pick a school keep modern conference alignments
+- Create-a-coach at the start (name, age, alma mater)
+- Alma mater wants you more on the carousel
+- Remove the Play Now button
+- Pick-a-school list must be tappable
+- Working Pick a team / Take this job button for Career, Pick a school, and Eras
+
+
+----------------------------------------------------------------
+SET 3 - ROSTER, MORALE, AND PLAYERS
+----------------------------------------------------------------
+- Full roster with ratings, year, position
+- Team names clickable for history and bio
+- Players clickable
+- Meet with players: pep talk / check-in to raise morale
+- Individual morale from each player's wants
+    * Playing time, winning, touches, stage / spotlight, NIL
+- Personality traits affect how they respond
+- Rebalance morale so it does not tank no matter what you do
+- Talent progression / development over seasons
+- Player skill chart
+- Tired players can be substituted back in after sitting
+- Kentucky description set to "Salena's team"
+- Historical player records at each school and overall
+
+
+----------------------------------------------------------------
+SET 4 - LIVE GAME / PLAY GAME
+----------------------------------------------------------------
+- Possession-by-possession simulation
+- Play calls actually run the called play
+- In-game commentary on Play Game, not only on sim
+- Utah State "I Believe" chant when playing as or against Utah State
+- ESPN GameCast-style visualizer that follows play-by-play
+- Matchup preview and prediction for each game
+- Postgame box score
+- Postgame press conference
+    * Multiple-choice questions about how the game went
+    * More questions and answers
+    * Options that are not all positive / pointed
+
+
+----------------------------------------------------------------
+SET 5 - SIMULATION ENGINE
+----------------------------------------------------------------
+- Sim one game without advancing extra games
+- Sim Game button works on its own (do not force Play then Simulate to End)
+- Sim week advances the current week only
+- Sim regular season until the conference tournament
+- Home-court advantage in the sim, moving with live home results
+- Neutral sites, NCAA, conference tourney, MTEs, and The Crown have no campus edge
+
+
+----------------------------------------------------------------
+SET 6 - SCHEDULE AND MTEs
+----------------------------------------------------------------
+- Conference schedules for every league
+- Custom non-conference schedule builder (kept after it disappeared once)
+- Join / leave multiple-team events (MTEs)
+- Holiday events: Maui, Atlantis, Charleston Classic, and the rest of the MTE slate
+- MTEs are real multi-game events, not a single exhibition
+
+
+----------------------------------------------------------------
+SET 7 - RECRUITING, NIL, AND THE PORTAL
+----------------------------------------------------------------
+- High school recruiting board
+- Scout, offer, campus visit
+- ESPN Top 100 recruits page
+- Recruits have specific wants that vary in importance
+    * Proximity to home
+    * Early playing time
+    * Coach play style
+    * Academic prestige
+    * NIL demands
+- NIL budget only decreases when spent on a player
+- Weekly hours split between recruiting and NIL fundraising
+- CPU can recruit for you
+- Transfer portal in the offseason; portal players go into the recruiting pool
+- NIL donor mood and budget that adjust from results
+- Emails from NIL donors reacting to results
+- NIL deal mechanics (term, shape, cap hit, roster carryover)
+- NIL hidden in Eras except the 2020s
+
+
+----------------------------------------------------------------
+SET 8 - RANKINGS AND BOARDS (FIRST PASS)
+----------------------------------------------------------------
+- AP Top 25
+- NET rankings with a resume / quadrant breakdown
+- KenPom efficiency rankings
+- Bubble Watch
+- League / conference standings
+- Home-court advantage ranking tab
+    * Current home win streak
+    * Dynamic from results
+    * Edge, home W-L, quality home wins
+- Ranking tabs styled like the real websites
+- College basketball themed backgrounds that do not wash out the text
+- Mobile formatting for every tab
+
+
+----------------------------------------------------------------
+SET 9 - BRACKETOLOGY (FIRST PASS)
+----------------------------------------------------------------
+- Bracketology tab for current tournament predictions
+- Separate CBS desk and ESPN desk
+- Tab label is "Bracketology", not "Board"
+- Committee board, seed list, auto bids, at-large field
+- NIT projection and The Crown projection
+- Bubble board
+
+
+----------------------------------------------------------------
+SET 10 - POSTSEASON (FIRST PASS)
+----------------------------------------------------------------
+- Conference tournaments; winner gets the automatic NCAA bid
+- Selection Sunday reveal
+- NCAA / NIT / The Crown selection shows
+- Full NCAA bracket (play-in through championship)
+- NIT tournament
+- The Crown tournament (NIT alternative)
+- Play or sim tournament games
+- Do not stall at the selection show
+- Next-season button not covered by the bottom tabs
+- Play up to 100 seasons with full offseasons between them
+
+
+----------------------------------------------------------------
+SET 11 - NEWS AND MAIL
+----------------------------------------------------------------
+- News tab with national headlines from games around the country
+- Email from the athletic director, periodic, tied to performance
+- Emails from NIL donors
+- Inbox with unread count
+
+
+----------------------------------------------------------------
+SET 12 - AWARDS, TROPHIES, AND RECORDS
+----------------------------------------------------------------
+- Preseason awards
+- Postseason awards (all-conference, All-American, player of the year)
+- Trophy room
+    * Conference regular-season and tournament championships
+    * NCAA bids, Sweet 16, Elite 8, Final Four, championships
+    * NIT berths and success
+    * The Crown bids and results
+- Records tab
+    * School history back to 1900
+    * NCAA championship counts (Kentucky 8 official titles, not 9)
+    * Conference history
+    * Coach records (user and CPU) at each school, conference, and NCAA
+    * Player records at each school and overall
+    * Historical coaching records going forward
+
+
+----------------------------------------------------------------
+SET 13 - COACHING, CONTRACTS, AND THE CAROUSEL
+----------------------------------------------------------------
+- Coaching skill chart: offense, defense, recruiting, talent development, leadership
+- Earn progression points and spend them on a skill tree
+- End-of-season coaching skill points
+- Contracts: varying lengths and expectations
+- Coaching carousel
+    * Each school has a named head coach
+    * Jobs only open when a team fires, a coach retires, or a successful coach leaves for the NBA
+    * Hire is not guaranteed; percentage based on performance
+    * Only offer jobs you have proven successful enough for
+    * Alma mater increases that school's desire to hire you
+    * Successful coaches occasionally leave for the NBA
+    * Retirement as a reason a job can open
+    * Carousel recap of every coaching change
+- Career climb from lower-tier jobs upward
+
+
+----------------------------------------------------------------
+SET 14 - OFFSEASON
+----------------------------------------------------------------
+- Recruiting including the transfer portal
+- Coaching carousel
+- NIL budget adjustments from donor satisfaction
+- Player development
+- Spend leftover coaching points
+- Continue to next season (up to 100)
+
+
+----------------------------------------------------------------
+SET 15 - SAVES
+----------------------------------------------------------------
+- Automatic saving
+- Multiple save files
+- Duplicate / delete / switch saves
+- Continue from last save
+
+
+----------------------------------------------------------------
+SET 16 - LOOK, LANGUAGE, AND POLISH
+----------------------------------------------------------------
+- Polished UI with basketball-themed backgrounds per tab
+- Ranking tabs look like the real sites (AP, NCAA/NET, KenPom, ESPN, CBS)
+- Restore the uploaded title-screen picture
+- Remove extra descriptive text on the title screen (name + buttons only)
+- Change "chair" to "job"
+- Change "slate" to "schedule"
+- Get rid of text referring to the chair and a frozen copy
+- Full tab names (Bracketology, not Board)
+- Mobile formatting on all tabs
+- Cover art / OG image 1200x630 for link previews
+- X feed banner 50:11 from the uploaded image
+- Kentucky listed with 8 championships, not 9
+
+
+----------------------------------------------------------------
+SET 17 - ERAS MODE (HISTORICAL)
+----------------------------------------------------------------
+- Start in any decade from the main menu
+- Real-world decade results drive ratings / prestige
+- NIL only in the 2020s
+- No 3-point line before 1986
+- Conference associations accurate to that era only
+    (Pac-8 / Pac-10, Big Eight, SWC, Metro, independents, etc.)
+- Regular Career / Pick a school stay on today's map
+
+
+----------------------------------------------------------------
+SET 18 - PLATFORMS AND SHARING
+----------------------------------------------------------------
+- Make the game publicly available so it can be shared
+- Playable link that does not require a Grok login
+- Visibility / private-share issues when sending to friends
+- Standalone SPA that is actually playable
+- iOS Xcode export for App Store upload
+- Android / Play Store build
+- Privacy policy, store listing, app icon
+- New share cards (og.jpg and x-banner.jpg)
+
+
+----------------------------------------------------------------
+SET 19 - BUGS AND PLAYABILITY FIXES
+----------------------------------------------------------------
+- Sim one game was simulating several - fix the engine
+- Sim Game button did nothing unless you Play then Simulate to End
+- NIL budget draining with no recruiting
+- Play calls in live coaching not running the called play
+- Tired / subbed players could not be subbed back in
+- NET rankings not working correctly
+- Custom schedules and MTE join disappeared
+- Pick a school showed an untappable text list
+- Pick a team button not starting any mode
+- Game stuck at the Selection Sunday / postseason
+- Next-season button covered by the bottom tab bar
+- Players not clickable for pep talks
+- Tab still said "Board" after being renamed Bracketology
+- Title screen not playable / only showed the title as text
+- Public / grok.me / Netlify share links broken or private
+- Press conferences too thin; needed more answers including negative ones
+- Morale tanking too fast
+- Kentucky championship count wrong (9 instead of 8)
+
+
+----------------------------------------------------------------
+SET 20 - iOS / SAFARI / GROK APP TAPS
+----------------------------------------------------------------
+- iOS and Safari tap reliability (menus actually open)
+- Hash title nav (#hh-career, #hh-dynasty, etc.) so iframe taps register
+- visualViewport resize and scroll drive the dock gap, not document scroll
+- Pinch-zoom does not shove the tab bar
+- Framed Grok preview gets extra dock padding so tabs sit above the remix pill
+- Keyboard / URL-bar gap tracked so chrome does not cover buttons
+
+
+----------------------------------------------------------------
+SET 21 - GAMECAST AND PLAY CALLING
+----------------------------------------------------------------
+- GameCast visualizer accuracy (shot location, make/miss, possession)
+- Play calling with hidden results until the play runs
+- The play you call is the play they run
+
+
+----------------------------------------------------------------
+SET 22 - 30-GAME REGULAR SEASON AND MTEs
+----------------------------------------------------------------
+- Regular season capped at 30 games
+- Max 3 games per week
+- 18 regular-season weeks
+- Confirm MTEs are real multi-game events
+- Bigger schools can decline if your prestige is too low
+
+
+----------------------------------------------------------------
+SET 23 - MANUAL SAVES AND HISTORY
+----------------------------------------------------------------
+- Confirm manual save (named slots, not only autosave)
+- Named save files plus autosave
+- Cap of 8 manual files
+- Multi-season stats and history persist
+- Trophy / bid / title history carries across seasons
+- Titles only if you actually win the NCAA tournament (no phantom banners)
+- You cannot skip March into the offseason
+
+
+----------------------------------------------------------------
+SET 24 - REAL NCAA TOURNAMENT SELECTION
+----------------------------------------------------------------
+- Real committee selection, not a poll-slice fake March
+- 32 automatic bids (every conference tournament champion)
+- 36 at-large bids
+- Field of 68
+- First Four: two 16-seed autos and two 11-seed at-larges
+- Seeds and regions kept through the Round of 64 to the title
+- CPU conference tournaments simmed; yours is scheduled (top 8, you always in)
+- Committee score from W-L, conference W, prestige, SOS, quality wins, bad losses
+- NIT 32-team field
+- The Crown 16-team field
+- Review and lock this so March actually happens
+
+
+----------------------------------------------------------------
+SET 25 - RANKINGS: KENPOM, NET, AND AP (FULL BOARDS)
+----------------------------------------------------------------
+- Confirm the Rankings tab includes KenPom, the NET, and the AP poll
+- They were missing; a generic poll was replaced with three boards
+- NET based on bracketologists.com
+    * All 365 teams, not a top-whatever cut
+    * Q1-Q4 quadrants, previous rank, path, non-D1
+    * Cutoff line
+    * Movement arrows
+- KenPom tab the same as kenpom.com
+    * All 365 teams
+    * AdjEM / AdjO / AdjD / AdjT, Luck, SOS, OppO / OppD, NCSOS and ranks
+- AP poll ranks all 365 teams (points 1-25, also-receiving 26-40)
+- Search on every board
+- Site-faithful skins for all three
+
+
+----------------------------------------------------------------
+SET 26 - ESPN AND CBS BRACKETOLOGY SKINS
+----------------------------------------------------------------
+- ESPN Bracketology styled like ESPN / Joe Lunardi
+- CBS SportsLine styled like CBS Sports
+- Rank the full field of 68 on each desk, not a short top list
+- ESPN leans resume / AP before the field locks
+- CBS leans NET and KenPom before the field locks
+- After Selection Sunday both desks show the official 68
+- Last Four In / First Four Out / Next Four Out
+
+
+----------------------------------------------------------------
+SET 27 - MENUS AND DOCK FORMATTING
+----------------------------------------------------------------
+- Menus were overflowing so you could not reach the entire menu
+- More sheet was covered by the framed dock
+- Wide ranking tables shoved the dock off-canvas
+- Scrollable More sheet that stops above the dock
+- Horizontal clip so KenPom / NET tables cannot push the app sideways
+- Dock stays on screen in the Grok iframe
+
+
+----------------------------------------------------------------
+SET 28 - BRACKETOLOGY IN THE GROK APP + SELECTION SUNDAY SHOW
+----------------------------------------------------------------
+- Bracketology still did not format inside the Grok app iframe
+- ESPN: one region at a time (East / West / South / Midwest), names wrap
+- CBS: one region at a time; Seed lines still available as a chip
+- No sideways scroll; dock stays put
+- After conference tournaments, a Selection Sunday reveal show
+    1. The committee has set the field
+    2. 1-seeds, 2-seeds, 3-seeds
+    3. Rest of the 68
+    4. Your envelope - seed and region, or NIT / Crown / home
+- Skip to the board, or watch it through
+- Sim week will not tip the First Four until you open it or skip
+- Office card stays spoiler-free ("Watch Selection Sunday") until then
+- Official ESPN / CBS board after the reveal
+
+
+----------------------------------------------------------------
+EXPLORE / DESIGN ASKS (NOT A SHIPPED SET)
+----------------------------------------------------------------
+- Explore player personality traits impact
+- Explore NIL deal mechanics
+
+
+That's every set: original dynasty sim through Eras, recruiting, pressers,
+iOS taps, the 30-game season, real March selection, KenPom / NET / AP,
+site-faithful Bracketology, menu overflow, and the Selection Sunday show.

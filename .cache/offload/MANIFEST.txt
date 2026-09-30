@@ -1,0 +1,2 @@
+Offloaded from /workspace so grok.me publish can finish before the 60s gateway timeout.
+Not deleted — restore with: mv /workspace/.cache/offload/<name> /workspace/

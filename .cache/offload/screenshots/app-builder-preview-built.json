@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Dribble 2026",
+      "hasCanvas": false,
+      "bodyTextLen": 57,
+      "bodyTextHash": "17e4f30e7a3df3eabbf9b59dabad452fac3254472db46afde5a186c6d302f83e",
+      "bodyTextPrefix": "Dribble 2026 Career Pick a school Eras Files Hall of Fame",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Dribble 2026",
+      "hasCanvas": false,
+      "bodyTextLen": 57,
+      "bodyTextHash": "17e4f30e7a3df3eabbf9b59dabad452fac3254472db46afde5a186c6d302f83e",
+      "bodyTextPrefix": "Dribble 2026 Career Pick a school Eras Files Hall of Fame",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-preview-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-preview-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}

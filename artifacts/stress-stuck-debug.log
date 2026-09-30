@@ -1,0 +1,10 @@
+— STUCK DEBUG —
+newDynasty 2.17 MB players 4745 recruits 256 sked 2670
+lock 2.44 MB sked 5191 watch undefined week 1 phase regular
+week 2 regular 1441ms mem 3.29MB file 2.05MB results 536
+week 3 regular 1432ms mem 3.71MB file 2.12MB results 1067
+week 4 regular 1474ms mem 4.10MB file 2.19MB results 1604
+week 5 regular 1316ms mem 4.45MB file 2.25MB results 2096
+4 weeks wall 6097 ms
+final mem 4.76 MB file 2.31 MB
+STUCK DEBUG OK

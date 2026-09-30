@@ -1,0 +1,10 @@
+kentucky 20-10 conf 6-8 KP 44 NET 28 committee 22 (159.4) 6 South at-large field 68 file 2.65MB
+duke 23-8 conf 12-4 KP 11 NET 17 committee 16 (161.0) 4 East at-large field 68 file 2.65MB
+gonzaga 29-4 conf 14-2 KP 2 NET 3 committee 1 (226.2) 1 East auto field 68 file 2.66MB
+virginia 27-5 conf 13-3 KP 16 NET 7 committee 12 (191.6) 3 Midwest at-large field 68 file 2.65MB
+vermont 20-13 conf 13-3 KP 49 NET 107 committee 107 (93.1) 12 West auto field 68 file 2.66MB
+UK y1 sel 27-5 conf 11-3 KP 11 NET 4 committee 2 (217.2) 1 West at-large field 68 file 2.65MB
+UK y1 off 31-6 conf 11-3 KP 1 NET 3 committee 1 (239.5) 1 West at-large field 68 file 2.71MB
+UK y2 sel 27-6 conf 9-5 KP 2 NET 5 committee 3 (201.1) 1 South auto field 68 file 2.74MB
+UK y2 off 30-7 conf 9-5 KP 2 NET 7 committee 3 (216.0) 1 South auto field 68 file 2.78MB
+SELECT AUDIT OK

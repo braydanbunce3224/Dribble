@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Dribble 2026",
+      "hasCanvas": false,
+      "bodyTextLen": 79,
+      "bodyTextHash": "7fa3796f312d8511d6872d7f1d636d3bcc1fc2985658518a9782b7dbc93ca4a0",
+      "bodyTextPrefix": "Dribble 2026 THE GYM'S OPENING CAREER PICK A SCHOOL ERAS LOAD GA",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/prod-upload.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Dribble 2026",
+      "hasCanvas": false,
+      "bodyTextLen": 79,
+      "bodyTextHash": "7fa3796f312d8511d6872d7f1d636d3bcc1fc2985658518a9782b7dbc93ca4a0",
+      "bodyTextPrefix": "Dribble 2026 THE GYM'S OPENING CAREER PICK A SCHOOL ERAS LOAD GA",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/prod-upload-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/prod-upload.json"
+}

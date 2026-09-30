@@ -1,0 +1,65 @@
+TAP version 13
+# Subtest: threes sit outside the arc, twos inside, FTs on the line
+ok 1 - threes sit outside the arc, twos inside, FTs on the line
+  ---
+  duration_ms: 3.372128
+  type: 'test'
+  ...
+# Subtest: home attacks the right hoop, away the left
+ok 2 - home attacks the right hoop, away the left
+  ---
+  duration_ms: 0.314322
+  type: 'test'
+  ...
+# Subtest: live sim scores, clock, and spots stay consistent with the log
+ok 3 - live sim scores, clock, and spots stay consistent with the log
+  ---
+  duration_ms: 19.2089
+  type: 'test'
+  ...
+# Subtest: sim rest finishes with a score
+ok 4 - sim rest finishes with a score
+  ---
+  duration_ms: 39.774741
+  type: 'test'
+  ...
+# Subtest: pregame lock and crowd fill
+ok 5 - pregame lock and crowd fill
+  ---
+  duration_ms: 0.363765
+  type: 'test'
+  ...
+# Subtest: full-court press is off the board after a miss
+ok 6 - full-court press is off the board after a miss
+  ---
+  duration_ms: 0.670586
+  type: 'test'
+  ...
+# Subtest: simmed box scores add up and look like college basketball
+ok 7 - simmed box scores add up and look like college basketball
+  ---
+  duration_ms: 206.363133
+  type: 'test'
+  ...
+# Subtest: shooters take more threes than bigs
+ok 8 - shooters take more threes than bigs
+  ---
+  duration_ms: 133.962784
+  type: 'test'
+  ...
+# Subtest: played and simmed recaps keep a real box
+ok 9 - played and simmed recaps keep a real box
+  ---
+  duration_ms: 2196.311648
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4044.588655
+EXIT:0

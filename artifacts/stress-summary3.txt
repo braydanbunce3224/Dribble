@@ -1,0 +1,9 @@
+soak-years EXIT 0
+century EXIT 0
+full-run EXIT 0
+gamecast-accuracy EXIT 0
+save-roundtrip EXIT 0
+week-one EXIT 0
+schedule-30 EXIT 0
+assist-year EXIT 0
+history-seasons EXIT 0

@@ -1,0 +1,581 @@
+Implement the following improvements and corrections in Dribble. Prioritize trustworthy simulation, clear decisions, satisfying coaching control, and long-term attachment to players and programs.
+
+Use Hardwood Empire as a benchmark for onboarding, readable roster management, recruiting presentation, and dynasty progression. Dribble’s strongest opportunity is to combine those qualities with deeper tactical coaching and more personal career consequences.
+
+Inspect existing implementations before adding features. Improve systems already present, including Gamecast, recruiting, chemistry, contracts, archives, and scheduling. Preserve working behavior and existing saves. Implement changes in complete, testable phases.
+
+1. FIX CONTRADICTORY GAME STATE FIRST
+
+Investigate and correct these issues observed during play:
+
+- Leaving alma mater blank resulted in the message “Alma mater is this campus.” An omitted alma mater must remain unset unless the player explicitly chooses one. Job selection must not silently change it.
+- Nico Diaz displayed five fouls and remained listed on the floor, while another prompt said he had two fouls. Verify both simulation eligibility and presentation. A stale lineup display and a player actually participating after fouling out are different defects; resolve whichever applies.
+- A recruit appeared as both “SIGNED” and “Soft commit.” Define distinct recruiting states and use the same terminology everywhere.
+- The contract required 10 wins and six conference wins, while another panel said the AD wanted six wins. Separate total wins, conference wins, projected performance, contractual requirements, and stretch goals.
+- A recruit showed a 40% signing chance and an enabled Sign button, but clicking it produced “You need 70 on this difficulty.” Eligibility and probability must agree. If a hard threshold blocks the action, show the unmet requirement before the click.
+- Increasing a player’s minutes also increased his usage. Verify whether this is intended. If the controls are independent, fix the coupling. If an automatic adjustment is intentional, explain it and allow the user to control it.
+- Intentional-foul commentary sometimes described the wrong team’s perspective. Derive narration from the actual fouling team, shooter, possession, and result.
+
+For each issue, identify the underlying cause and add a focused regression test. Avoid fixing only the visible text while leaving contradictory internal state.
+
+Use one authoritative representation for each game fact. Derive dashboards, alerts, box scores, commentary, player cards, and historical records from that state.
+
+2. MAKE BASKETBALL RULES AND STATISTICS RELIABLE
+
+Audit the simulation paths used by possession coaching, game simulation, week simulation, season simulation, and resumed saves.
+
+All paths must enforce the same rules and produce internally consistent statistics.
+
+Verify:
+
+- Five eligible players participate for each team during normal play.
+- Fouled-out, ejected, injured-out, suspended, and otherwise ineligible players cannot be selected for subsequent possessions.
+- Substitutions update the visible lineup, simulation participants, minutes, fatigue, and matchups together.
+- Team and individual fouls follow the selected ruleset, including period resets and bonus conditions.
+- Regulation and overtime clocks, possession changes, free throws, rebounds, and end-of-period events occur in the correct order.
+- Intentional fouling consumes appropriate clock time and follows the actual bonus state.
+- A missed free throw that remains live can produce a rebound.
+- A blocked shot is recorded consistently with the shot attempt and ensuing possession.
+- A steal creates the corresponding turnover.
+- Player scoring reconciles with team scoring.
+- Field goals, threes, and free throws reconcile with points.
+- Player minutes reconcile with elapsed game time: 200 team minutes for a completed 40-minute regulation game, plus 25 for each completed five-minute overtime. Use precise internal values and explain display rounding.
+- Final results, season averages, standings, awards, and career totals use the same completed game record.
+- A game cannot be counted twice through repeated clicks, navigation, reloads, or retries.
+
+Audit shot charts as well. If a chart displays only sampled possessions or a filtered shot subset, label it clearly. Otherwise its makes and attempts must reconcile with the relevant box score.
+
+Use a reproducible random seed for debugging. Given the same seed and coaching decisions, changing display speed or hiding animations should not change the basketball result.
+
+3. REBUILD THE FIRST-WEEK EXPERIENCE
+
+Add an optional onboarding flow that gets a new player to meaningful coaching quickly.
+
+Offer three presets:
+
+- Casual Coach: staff handles routine recruiting, development, and rotations within player-set priorities; gameplay pauses for major decisions.
+- Head Coach: recommended default; the player manages recruiting, rotations, preparation, and important game decisions.
+- Full Control: detailed control over possessions, development, staff assignments, recruiting, and program management.
+
+Explain what each preset delegates. Let the player change individual settings later without restarting. Prefer assistance settings over silently removing important parts of the world simulation.
+
+Guide the first week through a short sequence:
+
+- Meet the AD and understand the season’s required objectives.
+- Review three roster strengths and three weaknesses.
+- Identify an important roster need.
+- Inspect one suitable recruit and make an informed recruiting action.
+- Confirm a suggested rotation.
+- Accept or customize a suggested schedule.
+- Review the first opponent.
+- Coach opening night.
+- Read a brief explanation of what changed afterward.
+
+Make these real actions that affect the career. Allow skipping, postponing, and returning to the tutorial. Keep progress saved.
+
+Prevent competing overlays. Contract acceptance, save notices, tutorial instructions, and AD messages must appear in a deliberate sequence with one active modal at a time.
+
+Acceptance: a first-time player can reach the opening game without understanding every program-management system, while an experienced player can skip guidance immediately.
+
+4. MAKE THE DASHBOARD A USEFUL COACHING DESK
+
+Reorganize the Gym/dashboard around the current decision.
+
+At the top, show:
+
+- Current date, season phase, record, and conference record.
+- Next opponent, location, and game time.
+- One primary action appropriate to the phase.
+- A short “Needs your attention” list.
+- Progress toward the season’s most important objectives.
+
+Distinguish urgent, optional, and informational items.
+
+Examples of urgent items:
+
+- An injured starter requires a replacement.
+- A promised role is at risk.
+- Recruiting hours are about to expire.
+- A commitment deadline is approaching.
+- An incomplete rotation prevents the next game.
+
+Examples of optional items:
+
+- Scout the next opponent.
+- Check on an unhappy reserve.
+- Review an assistant’s recommendation.
+- Read national news.
+
+Keep compliance, facilities, odds, record books, archives, and advanced statistics accessible through organized sections. Collapse information that is not relevant to the current week.
+
+Every alert should explain the issue and provide a direct route to resolving it. Resolved alerts should disappear or become a completed item.
+
+Add a concise weekly digest showing results, recruiting movement, development, injuries, relationships, and upcoming decisions.
+
+5. IMPROVE PROGRAM SELECTION AND COACH IDENTITY
+
+Make choosing a school informative and emotionally engaging.
+
+Each program card should show:
+
+- Program prestige.
+- Current roster strength.
+- Resources and facilities.
+- Returning experience.
+- Recruiting advantages.
+- Expected difficulty.
+- AD expectations.
+- A short description of the challenge.
+
+Explain differences between program prestige, current team strength, coach rating, and historical reputation. These numbers should not appear interchangeable.
+
+Provide starter recommendations such as a patient rebuild, a veteran roster, a local recruiting opportunity, or a resource-poor challenge. Keep the full school list searchable and filterable.
+
+At coach creation, offer meaningful backgrounds or archetypes with clearly stated strengths and weaknesses. Keep them balanced so one is not universally superior.
+
+Distinguish alma mater from dream job. Both should be optional and have separate, explainable effects.
+
+Allow the coach’s reputation to evolve from actual conduct: developing players, defensive performance, recruiting relationships, honoring promises, postseason success, and handling adversity.
+
+6. MAKE TACTICAL CHOICES UNDERSTANDABLE
+
+Keep possession-level play calling, but explain what each choice means.
+
+For every offensive and defensive action, provide a compact description covering:
+
+- What the action attempts to create.
+- Which personnel make it effective.
+- Favorable and unfavorable matchups.
+- Expected shot profile.
+- Turnover, foul, rebounding, and fatigue tradeoffs.
+- Relevant clock and score situations.
+
+For example, Pick & Roll should explain the ball-handler and screener requirements, how the opponent’s coverage changes the available options, and the risks of weak passing or poor spacing.
+
+Use contextual labels such as Recommended, Good Fit, Risky, and Countered. Generate these from actual game information. When scouting is incomplete, make the recommendation uncertain.
+
+Avoid making every choice “Good Fit.” Surface the few differences that matter most.
+
+Show a brief explanation such as: “Their center is slow defending the ball screen, but the weak-side help is strong. A shooting big would improve this matchup.”
+
+Any numerical forecast must come from the simulation’s real model. Use qualitative guidance when a precise estimate would be misleading.
+
+7. ADD TACTICAL ADAPTATION AND COACHING DEPTH
+
+Make game plans evolve over a game.
+
+Track offensive and defensive tendencies over an appropriate sample of possessions. Let opponents respond to repeated actions, favorable mismatches, foul trouble, and lineup changes.
+
+Repeated calls should not receive an arbitrary penalty solely because they were repeated. Their effectiveness should change because the opponent adjusts, personnel tire, execution varies, or the matchup changes.
+
+Add:
+
+- Primary, secondary, and situational offensive options.
+- Defensive coverage and matchup assignments where supported by the engine.
+- Clear late-game controls for quick shots, holding for the last shot, intentional fouling, and protecting a lead.
+- Timeout decisions involving rest, substitutions, strategy, and communication.
+- Assistant observations explaining what the opponent has changed.
+- Counters that depend on the players available.
+
+Keep strategy selection distinct from advancing a possession. The user should understand whether a button changes a persistent plan or immediately executes the next play.
+
+After important possessions, explain the mechanism: a switch created a mismatch, a trap forced a rushed pass, or poor spacing allowed help at the rim.
+
+8. OFFER MULTIPLE WAYS TO EXPERIENCE A GAME
+
+Support three game experiences using the same simulation:
+
+- Full Coaching: possession-level decisions.
+- Coach Moments: automatic play that pauses at important decisions.
+- Quick Sim: fast completion using the selected plan and staff settings.
+
+Allow switching modes during a game without losing state.
+
+Coach Moments should pause for configurable events, including foul trouble, injuries, major runs, tactical changes, halftime, close finishes, and overtime.
+
+Make simulation buttons explicit. Replace ambiguous labels such as “Sim rest” with labels describing whether the game will stop again. Clearly distinguish “Sim to next coaching moment” from “Sim to final.”
+
+Provide a pause control, reliable speed settings, and clear feedback when a decision is required.
+
+During a close finish, keep score, clock, possession, timeouts, fouls, active lineup, and available decisions visible together.
+
+9. IMPROVE THE EXISTING GAMECAST
+
+Inspect and extend the current Gamecast rather than replacing it without need.
+
+Make the court representation explain the action:
+
+- Clearly distinguish both teams and the ball.
+- Show direction of attack.
+- Identify the active players and their positions.
+- Highlight the shooter, passer, defender, rebounder, and relevant movement.
+- Show shot location, result, and possession changes.
+- Display substitutions, fouls, and injuries as explicit events.
+- Keep commentary synchronized with the visual sequence.
+
+Use animations driven by recorded simulation events. Visual timing must not determine outcomes.
+
+Provide reduced-motion and text-only options. Keep animations lightweight and readable on small screens.
+
+Give scoreboards readable figures and strong contrast. Avoid duplicated team abbreviations or redundant labels.
+
+Separate Gamecast, team statistics, box score, and win probability into clear views while keeping essential coaching controls accessible.
+
+10. REDESIGN RECRUITING AROUND INFORMED PRIORITIES
+
+Open recruiting with a concise team-needs summary and a manageable recommended board.
+
+Show current roster counts and projected counts after graduation, transfers, and commitments. Explain which season a count refers to.
+
+Start with approximately 8–12 staff-recommended prospects. Keep the national board available.
+
+Each recommendation should explain its relevance:
+
+- Immediate positional need.
+- Local connection.
+- Tactical fit.
+- Development upside.
+- Affordable NIL expectations.
+- Existing relationship.
+- Likely playing opportunity.
+- Realistic fallback.
+
+Use compact rows showing name, position, size, class, scouting confidence, fit, interest, competition, and status. Put detailed actions and scouting information in an expandable profile.
+
+Add persistent filters, sorting, shortlists, and side-by-side comparison of a few prospects.
+
+Preserve scroll position after actions. Avoid unexpectedly moving a prospect out from under the user because an interest-based sort changed.
+
+11. MAKE RECRUITING RELATIONSHIPS AND COMPETITION LEGIBLE
+
+Retain the understandable Scout → Offer → Visit → Commitment progression.
+
+Define explicit states such as discovered, scouted, contacted, offered, visited, verbal commitment, and signed. A signed player should not simultaneously be presented as an unsecured verbal commitment.
+
+Separate:
+
+- Interest.
+- Relationship strength.
+- Eligibility to commit.
+- Estimated likelihood of choosing the school.
+- Commitment security.
+- Available scholarships.
+- NIL commitments.
+
+Explain which actions improve which factors.
+
+Show competing schools, known advantages, recent movement, and the recruit’s likely decision timeline. Treat these as scouting information where appropriate; do not imply perfect knowledge of every rival’s plans.
+
+Give recruits multiple priorities, such as playing time, development, proximity, academic environment, tactical fit, prestige, relationships, and NIL.
+
+Create a few meaningful visit and conversation choices grounded in those priorities. Persist promises after the recruit joins the team.
+
+Show action costs before confirmation, including hours, money, scholarships, and promised roles. Make disabled actions explain their requirements.
+
+Prevent repeated clicks from spending resources twice or allowing cost-free repeated commitment attempts.
+
+12. CONNECT NIL, TRANSFERS, AND ROSTER PLANNING
+
+Make all roster-building systems share the same scholarship, eligibility, roster, and budget projections.
+
+Provide a view of:
+
+- Current roster.
+- Expected departures.
+- Returning players.
+- Incoming commitments.
+- Transfer targets.
+- Available scholarships.
+- Current and future NIL obligations.
+
+Define NIL units, funding periods, available funds, committed funds, and timing clearly. Distinguish a prospective offer from an accepted obligation.
+
+Transfers should have understandable motivations tied to role, relationships, development, playing time, program changes, and NIL where enabled.
+
+Give the player opportunities to respond before departures become final. A conversation may improve a situation, but it should not automatically erase months of unmet expectations.
+
+Make replacement planning possible without requiring the player to memorize every outgoing senior and unhappy reserve.
+
+Ensure computer-controlled programs obey the same roster and resource constraints.
+
+13. UNIFY LINEUPS, MINUTES, USAGE, AND SUBSTITUTIONS
+
+Create a rotation screen organized into starters, bench rotation, situational players, and inactive players.
+
+Display the full 200-minute regulation plan and identify over- or under-allocation.
+
+Explain that planned minutes are targets. Actual minutes may change because of fouls, injury, fatigue, matchups, overtime, or coaching decisions.
+
+Keep minutes and usage separate. Explain how usage is represented and how it changes when a different lineup is on the floor.
+
+Add:
+
+- Automatic rotation suggestions.
+- Manual adjustments with accessible controls.
+- Saved situational units.
+- Substitution rules for foul trouble and fatigue.
+- Position-fit warnings.
+- Views of spacing, handling, defense, and rebounding.
+- Promise conflicts and expected role satisfaction.
+- A preview of changes before applying a large automatic rotation update.
+
+Make lineup strengths contextual. A unit can be strong defensively and weak offensively without being reduced to a single opaque score.
+
+For live substitutions, show what is gained and lost, including fatigue, fouls, position fit, and matchup impact.
+
+14. MAKE DEVELOPMENT VISIBLE AND PERSONAL
+
+Give each player a development plan connected to his role and potential.
+
+Include:
+
+- Individual focus.
+- Limited team practice time.
+- Assistant assignments.
+- Mentorship where applicable.
+- Short-term goals.
+- Season goals.
+- Development history.
+- Progress explanations.
+
+Let practice choices create meaningful tradeoffs between preparation, skill growth, conditioning, and recovery.
+
+Show what contributed to progress: playing opportunities, practice, coaching, facilities, confidence, or mentorship. Explain plateaus and diminishing returns.
+
+Treat potential as an informed estimate where scouting uncertainty exists. Avoid presenting every player’s future as predetermined.
+
+Make breakouts and regressions emerge from player attributes and circumstances. Keep large random changes rare and explainable.
+
+Connect growth to basketball behavior. Improved passing should affect turnover avoidance or creation; improved defensive awareness should matter in rotations and coverage.
+
+Ensure assisted development gives understandable recommendations and reports what the staff did.
+
+15. IMPROVE MORALE, CHEMISTRY, AND PROMISES
+
+Distinguish individual morale, trust in the coach, role satisfaction, and team chemistry.
+
+For each important change, show a concise explanation and its time horizon. A disappointing game should not have the same effect as repeatedly breaking a role promise.
+
+Represent promises as concrete commitments:
+
+- What was promised.
+- When it must be fulfilled.
+- How progress is measured.
+- What circumstances may affect it.
+- Whether renegotiation is possible.
+
+Use specific language such as “Average at least 20 minutes over the next five eligible games” when the system supports that measurement.
+
+Account for injuries, suspensions, and other legitimate changes without making promises meaningless.
+
+Give conversations distinct purposes: explain a role, acknowledge frustration, set a development goal, discuss a broken promise, or address conflict.
+
+Prevent conversations from becoming a repeatable free morale boost. Show cooldowns and recent discussion history.
+
+If a morale setting is disabled, explain that clearly and avoid displaying urgent warnings for an inactive mechanic.
+
+16. CREATE A COHERENT COACHING CAREER
+
+Bring contracts, expectations, relationships, job security, and reputation into a Coach Office.
+
+Separate hard contractual requirements from projections and aspirational goals. Show progress against each using consistent terminology.
+
+Explain job security through visible factors:
+
+- Results relative to expectations.
+- Conference performance.
+- Program trajectory.
+- Recruiting.
+- Player retention.
+- Compliance.
+- Stakeholder relationships.
+- Contract context.
+
+Allow AD, donor, fan, and player priorities to conflict in understandable ways.
+
+Give assistants specialties, relationships, contract terms, and career ambitions. Explain their impact on scouting, recruiting, preparation, and development.
+
+Make job offers and interviews reflect the coach’s record, reputation, connections, style, and prior history.
+
+Give coaching decisions lasting consequences. A reputation for developing overlooked recruits or honoring player commitments should influence future opportunities.
+
+17. MAKE FACILITIES AND SCHEDULING STRATEGIC
+
+Show facility projects with a cost, timeline, benefit, and opportunity cost.
+
+A practice upgrade might support development; recovery resources might improve availability; arena improvements might affect revenue or atmosphere. Connect benefits to implemented systems and avoid unexplained universal bonuses.
+
+For scheduling:
+
+- Provide a complete suggested schedule immediately.
+- Explain opponent strength, travel, home/away balance, rest, and tournament implications.
+- Offer reasonable scheduling objectives, such as confidence-building, revenue, résumé improvement, or rivalries.
+- Show why an opponent may decline.
+- Explain how holiday events use available dates and game slots.
+- Warn before changing or locking a schedule.
+- Preserve conference obligations and prevent impossible overlaps.
+- Clearly distinguish exhibitions from games that count toward records and rankings.
+
+Make a school’s home-court advantage understandable through crowd, venue, travel, and team factors.
+
+18. BUILD A WORLD THAT REMEMBERS THE CAREER
+
+Connect news, rankings, awards, rivalries, drafts, and archives to actual events.
+
+Provide a personalized weekly digest with a limited number of relevant stories. Every story should link to the underlying team, player, game, or race.
+
+Explain ranking and tournament-projection movement using real inputs. Make projection uncertainty visible.
+
+Let rivalries develop through repeated close games, recruiting conflicts, tournament eliminations, geography, and coaching history.
+
+Use recurring media voices with different perspectives, but keep factual claims grounded in recorded events.
+
+Track former players and assistants so the world carries continuity across seasons.
+
+Create a career history containing:
+
+- Season summaries.
+- Recruiting classes.
+- Player development.
+- Championships and awards.
+- Job changes.
+- Rivalries.
+- Memorable games.
+- Records.
+- Important career decisions.
+
+Build historical stories from saved data. Do not invent performances, conversations, or achievements that did not occur.
+
+19. MAKE POSTGAME ANALYSIS A REASON TO PLAY AGAIN
+
+Place a concise coaching report above detailed statistics.
+
+Show:
+
+- Final result and main turning point.
+- Tactical adjustments and what followed.
+- Effective and ineffective lineups.
+- Shot quality and execution.
+- Turnovers, rebounds, fouls, and fatigue.
+- Relevant promise and morale changes.
+- Effects on season objectives and recruiting.
+- One or two useful preparation recommendations.
+
+Connect observations to specific possessions or stretches.
+
+Avoid declaring a decision wrong simply because the next shot missed. Separate expected quality, execution, and outcome.
+
+Label small samples. A lineup used for two possessions should not be confidently declared the best unit on the team.
+
+Where possible, let the player revisit the key sequence through Gamecast and see the selected call, opponent response, and result.
+
+Keep box scores, shot charts, and advanced statistics available in expandable views.
+
+20. IMPROVE VISUAL HIERARCHY AND ACCESSIBILITY
+
+Retain Dribble’s retro character while improving sustained readability.
+
+Use the pixel font selectively for titles, scores, and short labels. Use readable body and tabular text for dense information.
+
+Reduce visual noise from textures, scanlines, repeated borders, and excessive all-caps text where they interfere with reading. Provide a reduced-effects option.
+
+Use consistent spacing, button placement, status labels, and selected states.
+
+Ensure:
+
+- Important controls remain visible on small screens.
+- Fixed navigation does not cover content.
+- Dialogs fit within the viewport.
+- Text remains readable at increased zoom.
+- Controls have accessible names.
+- Keyboard focus is visible.
+- Modal focus is managed correctly.
+- Color is accompanied by text or icons.
+- Hover explanations are also available through touch and keyboard.
+- Tables scroll or adapt without hiding critical identifiers.
+- Repeated names and abbreviations are disambiguated.
+
+Preserve the user’s place when returning from a player profile, recruit, game recap, or historical screen.
+
+21. PROTECT SAVES AND MAKE LONG CAREERS DEPENDABLE
+
+Treat save integrity as a core feature.
+
+Add or verify:
+
+- A visible autosave status.
+- A timestamp for the last successful save.
+- Versioned save data.
+- Backward-compatible migrations.
+- Export and import.
+- Recoverable backups or rotating checkpoints.
+- Clear handling of browser-storage failures.
+- Validation before an imported save becomes active.
+- Protection against repeated actions while transitions are processing.
+
+Resume an interrupted live game with the correct clock, score, lineup, fatigue, fouls, timeouts, tactical settings, and random state.
+
+Make season transitions atomic and repeat-safe. Graduation, development, recruiting, transfers, contracts, awards, and historical records must advance exactly once.
+
+If migration cannot preserve a field, report the specific adjustment and retain the original save for recovery.
+
+22. VERIFY BALANCE AND PERFORMANCE
+
+Create reproducible season simulations to inspect balance across different program strengths, coaching styles, and assistance settings.
+
+Check distributions and outliers for scores, possessions, shooting, turnovers, fouls, rebounds, fatigue, injuries, development, recruiting outcomes, retention, and program progression.
+
+Use the configured rules and intended design targets. Investigate impossible results and dominant strategies rather than forcing every season toward identical averages.
+
+Verify that:
+
+- Weaker teams can occasionally win without making ratings irrelevant.
+- Strong players influence results without taking every shot.
+- Tactical advantages matter without guaranteeing victory.
+- Recruiting supports meaningful tradeoffs between present needs and future upside.
+- Difficulty changes are explained and applied consistently.
+- Staff automation uses the same resources and eligibility rules as manual play.
+- Long careers do not steadily degrade in speed or corrupt history.
+
+Keep screens responsive during larger simulations and show progress. Render long lists efficiently and avoid updating every component on each animation frame.
+
+23. IMPLEMENT IN DEPENDENCY ORDER
+
+Use this sequence:
+
+- First: state consistency, basketball rules, statistics, and save integrity.
+- Second: onboarding, dashboard organization, readable interfaces, and lineup clarity.
+- Third: tactical explanations, simulation modes, opponent adaptation, and Gamecast improvements.
+- Fourth: recruiting, NIL, transfer planning, development, morale, and promises.
+- Fifth: coaching careers, facilities, scheduling, world history, and postgame depth.
+- Finally: balance, performance, accessibility, and full-career regression checks.
+
+For each phase, identify the existing code involved, implement complete behavior, and verify the user journey. Use tests for consequential simulation and persistence logic, and browser checks for interaction and presentation.
+
+Do not leave active-looking buttons attached to unfinished features or display effects that the simulation does not implement.
+
+Track completed work, unresolved defects, and remaining requirements in a persistent checklist so progress can continue across sessions.
+
+24. REQUIRED COMPLETION CHECKS
+
+Before reporting completion, verify these scenarios:
+
+- Create coaches with and without an alma mater.
+- Start a new career with each assistance preset.
+- Complete or skip onboarding.
+- Set a valid rotation and handle an invalid one.
+- Scout, offer, visit, commit, and sign a recruit.
+- Encounter an unavailable recruiting action and receive a correct explanation.
+- Manage a promise and observe its consequences.
+- Play a game manually and through assisted simulation.
+- Substitute a player and verify the actual participants.
+- Handle a foul-out, injury, timeout, intentional foul, halftime adjustment, close finish, and overtime.
+- Confirm that box scores, shot charts, records, and commentary agree.
+- Save and resume an unfinished game.
+- Export and re-import a career.
+- Load an older save.
+- Complete a season and enter the next one without duplicated or missing transitions.
+- Review the game on desktop and a narrow mobile viewport.
+- Confirm that browser errors and failed saves are handled visibly.
+
+Report what changed, the behaviors verified, and any remaining limitations. Describe completed improvements accurately and keep unfinished work explicit.

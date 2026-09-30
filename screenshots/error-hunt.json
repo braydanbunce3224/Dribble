@@ -1,0 +1,36 @@
+{
+  "url": "http://127.0.0.1:8080/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Dribble",
+      "hasCanvas": false,
+      "bodyTextLen": 74,
+      "bodyTextHash": "93c7928114ca6ef3e306eb4d270b75801cd0750acef57d40aa5b82da640e3110",
+      "bodyTextPrefix": "Dribble THE GYM'S OPENING CAREER PICK A SCHOOL ERAS LOAD GAME HA",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/error-hunt.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Dribble",
+      "hasCanvas": false,
+      "bodyTextLen": 74,
+      "bodyTextHash": "93c7928114ca6ef3e306eb4d270b75801cd0750acef57d40aa5b82da640e3110",
+      "bodyTextPrefix": "Dribble THE GYM'S OPENING CAREER PICK A SCHOOL ERAS LOAD GAME HA",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/error-hunt-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/error-hunt.json"
+}
