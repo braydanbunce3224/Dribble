@@ -9,7 +9,7 @@ import { bindTap } from "@/lib/tap";
 import type { ConferenceId, Difficulty, GameState, LeagueSettings } from "@/game/types";
 
 export function SettingsView() {
-  const { state, patchLeague, moveTeam, setView, exportLeague, importLeague, forceEndgame, forceTwoFor } = useGame();
+  const { state, patchLeague, moveTeam, setView, exportLeague, importLeague } = useGame();
   const [q, setQ] = useState("");
   const [pick, setPick] = useState<string | null>(null);
   if (!state) return null;
@@ -119,19 +119,6 @@ export function SettingsView() {
         />
       )}
       {s.godMode && (
-        <div className="sandbox-warn rounded-xl border border-loss/50 bg-elevated p-4">
-          <p className="text-xs tracking-[0.18em] text-loss uppercase">Dev / sandbox</p>
-          <p className="mt-1 text-sm">These jumps do not write a Career win, an archive, or a box. Leave the game and the record stays put.</p>
-          <button type="button" className="mt-3 min-h-12 w-full rounded-lg bg-bg px-3 text-sm font-semibold" {...bindTap(forceEndgame)}>
-            Force endgame: up 3, 0:08, opponent ball
-          </button>
-          <button type="button" className="mt-2 min-h-12 w-full rounded-lg bg-bg px-3 text-sm font-semibold" {...bindTap(forceTwoFor)}>
-            Force 2-for-1: your ball, 0:36, ahead
-          </button>
-        </div>
-      )}
-
-      {s.godMode && (
         <div className="rounded-xl border border-border bg-elevated p-4">
           <p className="text-xs tracking-[0.18em] text-muted uppercase">Realignment</p>
           <p className="mt-1 text-sm text-muted">Offseason or preseason. Conferences that are full swap a team the other way.</p>
@@ -187,7 +174,7 @@ export function SettingsView() {
         <p className="text-xs tracking-[0.18em] text-muted uppercase">Price</p>
         <h2 className="font-display mt-1 text-2xl">Free forever</h2>
         <p className="mt-1 text-sm text-muted">
-          100% free D-I coaching sim — no IAP required. No ads. No energy gates. No loot boxes. Career, Pick a school, and live coaching stay open.
+          Free forever. No ads, no energy gates, no loot boxes. Career, Pick a school, and live coaching stay open.
         </p>
         <a
           className="mt-3 inline-flex min-h-11 items-center text-sm font-semibold text-accent"
@@ -205,7 +192,7 @@ export function SettingsView() {
           Championship build {SAVE_VERSION}. Install it from the browser menu. It resumes the last save on this device, including offline.
         </p>
         <div className="mt-3 flex flex-col gap-3">
-          <a href="/ARCHITECTURE.md" className="flex min-h-11 items-center rounded-lg bg-bg px-3 text-sm font-semibold text-accent">
+          <a href="/about.html" className="flex min-h-11 items-center rounded-lg bg-bg px-3 text-sm font-semibold text-accent">
             Architecture
           </a>
           <a href="/privacy.html" className="flex min-h-11 items-center rounded-lg bg-bg px-3 text-sm font-semibold text-accent">

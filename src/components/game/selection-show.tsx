@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useGame } from "@/game/store";
+import { marchStatus } from "@/game/ranks";
 import { TEAM_BY_ID } from "@/game/teams";
 import { NCAA_REGIONS, PAIR_64 } from "@/game/selection";
 import { confName, recOf } from "@/game/ranks";
@@ -76,7 +77,7 @@ export function SelectionShow() {
           <div className="sel-beat sel-envelope" key="you">
             <p className="sel-kicker">Your envelope</p>
             <h1 className="sel-title">
-              {you ? `${you.seed} seed · ${you.region}` : nit ? "NIT" : crown ? "CBI" : "Home for March"}
+              {marchStatus(state)?.label ?? (you ? `${you.seed} seed · ${you.region}` : nit ? "NIT" : crown ? "CBI" : "Outside the field")}
             </h1>
             <p className="sel-copy">
               {TEAM_BY_ID[youId]?.name} {recOf(state, youId)}

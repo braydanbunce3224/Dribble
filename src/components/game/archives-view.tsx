@@ -41,7 +41,7 @@ export function ArchivesView() {
       </div>
       {!row && (
         <p className="rounded-xl border border-border bg-elevated px-4 py-5 text-sm text-muted">
-          No games yet. Finish a season and the champions, awards, standings, and box scores stay here.
+          No finished seasons in the book yet. This year's games stay on the schedule and in the gym until the calendar rolls.
         </p>
       )}
       {log.length > 0 && (

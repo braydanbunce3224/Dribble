@@ -4,7 +4,7 @@ import type { RankKind } from "./ranks";
 import { CAREER_MAX_PRESTIGE } from "./types";
 import { TEAM_BY_ID, careerEligible } from "./teams";
 import {
-  addNonCon, answerPresser, beginLiveGame, closeLive, dropGame, goOffseason, identityName, joinMte, lockSchedule,
+  addNonCon, answerPresser, beginLiveGame, closeLive, dropGame, goOffseason, identityName, joinMte, lockSchedule, rotationShare,
   newDynasty, nextYourGame, offerRecruit, pepTalk, recapFor, runLivePossession, runLiveRest, scoutRecruit, setAssistedRecruit, setPlayerMpg, setPlayerUsage, simGame, simWeek,
   spendCoachPoint, startNextSeason, visitRecruit, markRead, signExtension, takeContractJob, walkContract, worldWithCustom,
   setRedshirt, talkStay as tryStay, letGo as sendDeclare, draftWaiting,
@@ -997,12 +997,17 @@ export const useGame = create<Store>((set, get) => ({
       return;
     }
     try {
+      const before = rotationShare(s.players, s.playerTeamId);
       const next = beginLiveGame(s);
       if (!next) {
         set({ toast: "No game to play." });
         return;
       }
-      apply(get, set, next, { view: "game" });
+      const after = rotationShare(next.players, next.playerTeamId);
+      apply(get, set, next, {
+        view: "game",
+        ...(before > 200 ? { toast: `Rotation was ${before - 200} minutes over the 200-minute game limit. Shares were trimmed to ${after}.` } : {}),
+      });
     } catch (e) {
       failPlay(set, e, "Couldn't start that game. Something in the save is missing.");
     }
@@ -1738,6 +1743,10 @@ export const useGame = create<Store>((set, get) => ({
   },
   createSchool: (input) => {
     const school = addCustomSchool(input);
+    if (!school) {
+      set({ toast: "Name the school first." });
+      return;
+    }
     const s = get().state;
     const next = s ? worldWithCustom(s, school) : null;
     if (next) persist(next);

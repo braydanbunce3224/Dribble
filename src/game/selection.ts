@@ -351,7 +351,7 @@ export function revealSelection(state: GameState): GameState {
       ? NIT
       : youCrown
         ? CBI
-        : "home for March";
+        : "outside the field";
   const tone: NewsTone = you ? "good" : youNit || youCrown ? "even" : "bad";
   return withNews(
     { ...state, selection: { ...sel, revealed: true } },

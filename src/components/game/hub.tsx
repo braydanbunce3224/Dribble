@@ -11,6 +11,7 @@ import { hangLine, mlLabel, spreadText } from "@/game/market";
 import { COACH_AXES } from "@/game/develop";
 import { bindTap } from "@/lib/tap";
 import { CBI, NCAA, NIT, gameKindShort, phaseLabel, outletLabel, siteWord } from "@/game/brand";
+import { marchStatus } from "@/game/ranks";
 import { leagueName } from "@/game/align";
 import { burnerTease } from "@/game/burner";
 import { podcastTease } from "@/game/podcast";
@@ -219,13 +220,7 @@ export function Hub() {
         <div className="tip-card">
           <p className="tip-kicker">Selection Day</p>
           <p className="font-display mt-1 text-2xl">
-            {(() => {
-              const bid = state.selection.ncaa.find((b) => b.teamId === state.playerTeamId);
-              if (bid) return `${bid.seed} seed · ${bid.region}${bid.playIn ? " · Play-in" : ""}`;
-              if (state.selection.nit.includes(state.playerTeamId)) return `${NIT} bid`;
-              if (state.selection.crown.includes(state.playerTeamId)) return CBI;
-              return "Home for March";
-            })()}
+            {marchStatus(state)?.label ?? "Outside the field"}
           </p>
           <button type="button" className="mt-3 min-h-11 rounded-lg bg-accent px-3 font-semibold text-accent-fg" {...bindTap(() => setView("bracketology"))}>
             Open bracketology
@@ -512,7 +507,10 @@ function ResumeStrip() {
   const { state, openRanks } = useGame();
   if (!state || state.phase === "preseason" || state.phase === "offseason") return null;
   const r = resumeOf(state);
-  const tag = r.path === "auto" ? "Auto bid" : r.path === "at-large" ? `In as a ${r.seed}` : r.path === "bubble" ? "On the bubble" : r.path === "nit" ? "NIT" : "Outside the field";
+  const locked = marchStatus(state);
+  const tag = locked
+    ? locked.label
+    : r.path === "auto" ? "Auto bid" : r.path === "at-large" ? `In as a ${r.seed}` : r.path === "bubble" ? "On the bubble" : r.path === "nit" ? "NIT" : "Outside the field";
   return (
     <button type="button" className="desk-tile" {...bindTap(() => openRanks("bubble"))}>
       <p className="desk-kicker">Résumé</p>

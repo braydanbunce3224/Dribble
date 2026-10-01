@@ -1,3 +1,12 @@
+function legsLabel(min: number, seasonFat: number, half: number) {
+  const gameLoad = half >= 2 ? Math.min(95, min * 2.6) : Math.min(45, min * 1.4);
+  const fat = Math.max(seasonFat, gameLoad);
+  if (fat >= 60 || min >= 28) return "tired";
+  if (fat >= 34 || (half >= 2 && min >= 14)) return "winded";
+  if (fat >= 16 || min >= 8) return "working";
+  return "fresh";
+}
+
 import { useEffect, useRef, useState } from "react";
 import { useGame } from "@/game/store";
 import { teamOf } from "@/game/teams";
@@ -697,7 +706,6 @@ function FloorStrip({ state, live }: { state: GameState; live: LiveGame }) {
     onIds.push(p.id);
   }
   const on = onIds.map((id) => roster.find((p) => p.id === id)).filter((p): p is NonNullable<typeof p> => Boolean(p));
-  const showFat = on.some((p) => fatigueOf(state, p.id) > 0);
   const usages = on.map((p) => p.usage ?? 0);
   const showUse = usages.some((u) => u > 0) && new Set(usages).size > 1;
   return (
@@ -707,11 +715,12 @@ function FloorStrip({ state, live }: { state: GameState; live: LiveGame }) {
         {on.map((p) => {
           const fouls = lines?.find((l) => l.id === p.id)?.pf ?? 0;
           const fat = fatigueOf(state, p.id);
+          const mins = lines?.find((l) => l.id === p.id)?.min ?? 0;
           const hot = (live.half === 1 && fouls >= 2) || (live.half >= 2 && fouls >= 4);
-          const legs = fat > 60 ? "tired" : fat > 35 ? "winded" : "fresh";
+          const legs = legsLabel(mins, fat, live.half);
           return (
             <button key={p.id} type="button" className={hot ? "is-on" : ""} {...bindTap(() => subPlayer(p.id))}>
-              {p.last} · {fouls}F{showFat ? ` · ${legs}` : ""}{showUse && (p.usage ?? 0) > 0 ? ` · ${p.usage}` : ""}
+              {p.last} · {fouls}F · {legs}{showUse && (p.usage ?? 0) > 0 ? ` · ${p.usage}` : ""}
             </button>
           );
         })}
@@ -755,7 +764,6 @@ function BenchPad({ state, live }: { state: GameState; live: LiveGame }) {
     .filter((p) => p.teamId === you && !(p.injury && p.injury.weeksLeft > 0))
     .sort((a, b) => b.mpg - a.mpg);
   const on = new Set((pinned && pinned.length >= 5 ? pinned : roster.slice(0, 5).map((p) => p.id)));
-  const showFat = roster.some((p) => fatigueOf(state, p.id) > 0);
   return (
     <div className="mt-4 rounded-xl border border-border bg-elevated p-3">
       <p className="text-[11px] tracking-[0.16em] text-muted uppercase">Your five · tap to sub</p>
@@ -771,7 +779,7 @@ function BenchPad({ state, live }: { state: GameState; live: LiveGame }) {
                 <span className={`w-10 text-[11px] font-semibold uppercase ${inGame ? "text-win" : "text-subtle"}`}>{inGame ? "In" : "Out"}</span>
                 <span className="min-w-0 flex-1 truncate">{p.first} {p.last}</span>
                 <span className="tabular-nums text-xs text-muted">{fouls} fouls</span>
-                {showFat ? <span className="w-14 text-right text-xs text-muted">{fat > 60 ? "tired" : fat > 35 ? "winded" : "fresh"}</span> : null}
+                <span className="w-14 text-right text-xs text-muted">{legsLabel(row?.min ?? 0, fat, live.half)}</span>
               </button>
             </li>
           );

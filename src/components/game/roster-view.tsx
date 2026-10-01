@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useGame } from "@/game/store";
 import { SKILL_LABEL } from "@/game/develop";
 import { teamChemistry } from "@/game/chemistry";
-import { classLabel, canRedshirt, playedThisSeason, isOut, FOCUS_OPTS, PROMISE_OPTS, livePromises, traitOf, isStarter, captainOf, fatigueOf } from "@/game/engine";
+import { classLabel, canRedshirt, playedThisSeason, isOut, FOCUS_OPTS, PROMISE_OPTS, livePromises, traitOf, isStarter, captainOf, fatigueOf, rotationShare } from "@/game/engine";
 import { bindTap } from "@/lib/tap";
 
 export function RosterView() {
@@ -19,6 +19,11 @@ export function RosterView() {
         <p className="mt-1 text-sm text-muted">
           Minutes, usage, focus. Redshirt him before he plays.
         </p>
+        {(() => {
+          const share = rotationShare(state.players, state.playerTeamId);
+          if (share <= 200) return <p className="mt-1 text-xs text-muted">{share} / 200 minutes.</p>;
+          return <p className="mt-1 text-xs text-loss">Rotation is {share - 200} minutes over the 200-minute game limit. It trims to 200 before tipoff.</p>;
+        })()}
       </div>
       {roster.length === 0 && (
         <p className="text-sm text-muted">No players on this file. Load another save or start a new job.</p>

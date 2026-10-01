@@ -530,6 +530,26 @@ export interface ResumeCard {
   quadNext: 1 | 2 | 3 | 4 | null;
 }
 
+/** One label for Gym, News, Résumé, and Bracket once the field is locked. */
+export function marchStatus(state: GameState, teamId = state.playerTeamId) {
+  const board = state.selection;
+  const bid = board?.ncaa?.find((b) => b.teamId === teamId);
+  if (board?.ncaa?.length) {
+    if (bid) {
+      return {
+        inField: true,
+        label: `${bid.seed} seed · ${bid.region}${bid.playIn ? " · Play-in" : ""}`,
+        seed: bid.seed,
+        region: bid.region,
+      };
+    }
+    if (board.nit.includes(teamId)) return { inField: false, label: "NIT", seed: null, region: null };
+    if (board.crown.includes(teamId)) return { inField: false, label: "CBI", seed: null, region: null };
+    return { inField: false, label: "Outside the field", seed: null, region: null };
+  }
+  return null;
+}
+
 export function resumeOf(state: GameState, teamId = state.playerTeamId): ResumeCard {
   const net = netRanks(state);
   const kp = kenpom(state);
@@ -537,13 +557,14 @@ export function resumeOf(state: GameState, teamId = state.playerTeamId): ResumeC
   const n = net.find((r) => r.id === teamId);
   const k = kp.find((r) => r.id === teamId);
   const a = ap.find((r) => r.id === teamId);
-  const field = espnField(state);
+  const locked = Boolean(state.selection?.ncaa?.length);
+  const field = locked ? state.selection!.ncaa : espnField(state);
   const bid = field.find((b) => b.teamId === teamId);
   const bubble = bubbleLists(state, field, net);
   let path: ResumeCard["path"] = "out";
   if (bid?.path === "auto") path = "auto";
   else if (bid?.path === "at-large") path = "at-large";
-  else if (bubble.firstFourOut.includes(teamId) || bubble.nextFourOut.includes(teamId)) path = "bubble";
+  else if (!locked && (bubble.firstFourOut.includes(teamId) || bubble.nextFourOut.includes(teamId))) path = "bubble";
   else if ((state.selection?.nit ?? []).includes(teamId)) path = "nit";
   const q1w = n?.q1w ?? 0;
   const q1l = n?.q1l ?? 0;

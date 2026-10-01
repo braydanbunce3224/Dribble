@@ -1,5 +1,19 @@
 # Changelog
 
+## Championship build 32 — QA
+
+QA: Selection/bracket truth, no phantom Test U, hide dev tools, roster minutes, fatigue labels, copy cleanup.
+
+Gym, News, Résumé, and Bracket use one Selection Day status. A school in the field of 68 is listed that way everywhere and sits on the official bracket. A school out of the field says NIT, CBI, or Outside the field — not Home for March.
+
+Add a school starts blank. Submitting a school does not also insert Test U. Old default Test U rows are purged on load.
+
+Settings hides the sandbox, sim test, and force-endgame jumps unless `?dev=1`. About is a player page, not the architecture notes.
+
+A new career opens at 200 minutes or fewer. A crowded rotation trims to 200 before tipoff and says so. Live chips follow minutes: a high-minute player in the second half is not labeled Fresh.
+
+Awards, cup games, whistles, the résumé footer, and the week-one recruiting line use the player copy.
+
 ## Championship build 31 — presentation
 
 Win probability treated the clock as minutes, so a 30-point hole at the half still looked like a 30–40% game. The clock is seconds. Down 30 with 20:00 left is now single digits. Up 2 with the ball at 0:09 is the mid-90s. Up 4 at 0:04 is 95% or better. Possession only moves the number inside the last 40 seconds.

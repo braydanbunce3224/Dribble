@@ -114,7 +114,7 @@ function rosterFor(seed: number, teamId: string, prestige: number): Player[] {
       year: 1 + (i % 4),
       teamId,
       ovr,
-      mpg: i < 5 ? 28 : i < 8 ? 18 : 8,
+      mpg: i < 5 ? 28 : i < 8 ? 12 : 4,
       rng,
     }));
   }
@@ -387,7 +387,8 @@ export function newDynasty(
     customSchools: listCustomSchools(),
   };
   const seeded = tickPodcasts(raw, mulberry32(seed ^ 0xca71));
-  return tickEventsOpen(ensureProgram(seeded));
+  const fitted = fitRotation(seeded.players, teamId);
+  return tickEventsOpen(ensureProgram({ ...seeded, players: fitted.players }));
 }
 
 /** Drop a commissioner school into a save that is already open. */
@@ -1071,8 +1072,43 @@ export function closeLive(state: GameState): GameState {
   return next;
 }
 
+
+export function rotationShare(players: { teamId: string; mpg: number; injury?: { weeksLeft: number } | null }[], teamId: string) {
+  return players
+    .filter((p) => p.teamId === teamId && !(p.injury && p.injury.weeksLeft > 0))
+    .reduce((n, p) => n + (p.mpg || 0), 0);
+}
+
+/** Scale a crowded rotation down to a 200-minute game. Returns minutes removed. */
+export function fitRotation<T extends { teamId: string; mpg: number; injury?: { weeksLeft: number } | null }>(players: T[], teamId: string, cap = 200): { players: T[]; over: number } {
+  const live = players.filter((p) => p.teamId === teamId && !(p.injury && p.injury.weeksLeft > 0));
+  const total = live.reduce((n, p) => n + (p.mpg || 0), 0);
+  if (total <= cap || total <= 0) return { players, over: 0 };
+  const scale = cap / total;
+  const next = players.map((p) => {
+    if (p.teamId !== teamId || (p.injury && p.injury.weeksLeft > 0)) return p;
+    return { ...p, mpg: Math.max(0, Math.round(p.mpg * scale)) };
+  });
+  let sum = next.filter((p) => p.teamId === teamId && !(p.injury && p.injury.weeksLeft > 0)).reduce((n, p) => n + p.mpg, 0);
+  if (sum > cap) {
+    const order = next
+      .map((p, i) => ({ p, i }))
+      .filter((x) => x.p.teamId === teamId && !(x.p.injury && x.p.injury.weeksLeft > 0))
+      .sort((a, b) => b.p.mpg - a.p.mpg);
+    for (const row of order) {
+      if (sum <= cap) break;
+      if (row.p.mpg <= 0) continue;
+      next[row.i] = { ...row.p, mpg: row.p.mpg - 1 };
+      sum -= 1;
+    }
+  }
+  return { players: next, over: total - cap };
+}
+
 export function beginLiveGame(state: GameState): GameState | null {
   if (state.liveGame?.done) state = closeLive(state);
+  const fit = fitRotation(state.players, state.playerTeamId);
+  if (fit.over > 0) state = { ...state, players: fit.players };
   return startLiveGame(state);
 }
 

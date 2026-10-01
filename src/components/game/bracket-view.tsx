@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { useGame } from "@/game/store";
 import { TEAM_BY_ID } from "@/game/teams";
 import { NCAA_REGIONS, PAIR_64 } from "@/game/selection";
-import { bubbleLists, cbsField, espnField, recOf, teamLabel, apPoll, netRanks, type BracketOutlet } from "@/game/ranks";
+import { bubbleLists, cbsField, espnField, marchStatus, recOf, teamLabel, apPoll, netRanks, type BracketOutlet } from "@/game/ranks";
 import type { NcaaBid, NcaaRegion } from "@/game/types";
 import { bindTap } from "@/lib/tap";
 import { ncaaRoundLabel } from "@/game/brand";
@@ -16,11 +16,12 @@ export function BracketView() {
   const nextNcaa = state.schedule.find((g) => g.kind === "ncaa" && !g.resultId && (g.homeId === you || g.awayId === you));
   const anyNcaa = state.schedule.find((g) => g.kind === "ncaa" && !g.resultId);
   const round = nextNcaa ? ncaaRoundLabel(nextNcaa.id) : anyNcaa ? ncaaRoundLabel(anyNcaa.id) : "";
+  const youStatus = locked ? marchStatus(state) : null;
   const lede = !locked
     ? "Projection. Not a locked bracket. This is the field if the tournament started today."
     : state.phase === "ncaa"
-      ? `Locked bracket. ${round || "NCAA tournament"}.`
-      : "Locked bracket. Official field after Selection Sunday.";
+      ? `Locked bracket. ${round || "NCAA tournament"}. ${youStatus?.label ?? "Outside the field"}.`
+      : `Locked bracket. Official field after Selection Sunday. ${youStatus?.label ?? "Outside the field"}.`;
   return (
     <div className="flex min-w-0 max-w-full flex-col gap-3 overflow-x-clip">
       <div>

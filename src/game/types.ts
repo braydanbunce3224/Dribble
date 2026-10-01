@@ -1092,7 +1092,7 @@ export interface GameState {
   snake?: SnakeTalk | null;
 }
 
-export const SAVE_VERSION = 31;
+export const SAVE_VERSION = 32;
 export const START_SEASON = 2026;
 export const SCHOLARSHIPS = 13;
 export const WEEK_HOURS = 10;

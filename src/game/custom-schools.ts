@@ -37,8 +37,29 @@ function writeList(list: TeamSeed[]) {
   }
 }
 
+export function isPhantomTest(seed: { name?: string; mascot?: string; abbr?: string; city?: string } | null | undefined) {
+  if (!seed) return false;
+  const name = (seed.name ?? "").trim().toLowerCase();
+  const mascot = (seed.mascot ?? "").trim().toLowerCase();
+  const abbr = (seed.abbr ?? "").trim().toUpperCase();
+  const city = (seed.city ?? "").trim().toLowerCase();
+  return name === "test u" && (mascot === "trials" || abbr === "TST" || city === "testville");
+}
+
+/** Drop form-default Test U rows that were never named by the player. */
+export function purgePhantomSchools() {
+  const kept = readList().filter((t) => !isPhantomTest(t));
+  if (kept.length !== readList().length) writeList(kept);
+  for (let i = TEAMS.length - 1; i >= 0; i--) {
+    const row = TEAMS[i]!;
+    if (!row.id.startsWith("custom-") || !isPhantomTest(row)) continue;
+    TEAMS.splice(i, 1);
+    delete TEAM_BY_ID[row.id];
+  }
+}
+
 function mount(seed: TeamSeed) {
-  if (!seed?.id || !seed.name) return;
+  if (!seed?.id || !seed.name || isPhantomTest(seed)) return;
   const row: TeamSeed = {
     id: seed.id,
     name: seed.name,
@@ -64,6 +85,7 @@ export function listCustomSchools(): TeamSeed[] {
 }
 
 export function loadCustomSchools() {
+  purgePhantomSchools();
   for (const row of readList()) mount(row);
 }
 
@@ -87,9 +109,10 @@ function slug(name: string) {
   return s || "school";
 }
 
-export function addCustomSchool(input: CustomSchoolInput): TeamSeed {
+export function addCustomSchool(input: CustomSchoolInput): TeamSeed | null {
   loadCustomSchools();
-  const name = input.name.trim().slice(0, 32) || "Test U";
+  const name = input.name.trim().slice(0, 32);
+  if (!name) return null;
   let id = `custom-${slug(name)}`;
   let n = 2;
   while (TEAM_BY_ID[id] && TEAM_BY_ID[id]!.name !== name) {
@@ -98,14 +121,15 @@ export function addCustomSchool(input: CustomSchoolInput): TeamSeed {
   const seed: TeamSeed = {
     id,
     name,
-    mascot: input.mascot.trim().slice(0, 24) || "Trials",
-    abbr: (input.abbr.trim() || name.slice(0, 3)).toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 5) || "TST",
+    mascot: input.mascot.trim().slice(0, 24) || "Club",
+    abbr: (input.abbr.trim() || name.slice(0, 3)).toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 5) || "SCH",
     conference: input.conference || "HOR",
     city: input.city.trim().slice(0, 28) || "Campus",
     state: input.stateName.trim().slice(0, 8) || "US",
     color: /^#[0-9a-fA-F]{6}$/.test(input.color) ? input.color : "#0E6B4F",
     prestige: 56,
   };
+  if (isPhantomTest(seed)) return null;
   mount(seed);
   const list = readList().filter((t) => t.id !== seed.id);
   list.push(seed);

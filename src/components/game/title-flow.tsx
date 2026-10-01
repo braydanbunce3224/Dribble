@@ -498,11 +498,11 @@ function Chip({ on, onClick, label }: { on: boolean; onClick: () => void; label:
 function AddSchool() {
   const createSchool = useGame((s) => s.createSchool);
   const [open, setOpen] = useState(false);
-  const [name, setName] = useState("Test U");
-  const [mascot, setMascot] = useState("Trials");
-  const [abbr, setAbbr] = useState("TST");
+  const [name, setName] = useState("");
+  const [mascot, setMascot] = useState("");
+  const [abbr, setAbbr] = useState("");
   const [color, setColor] = useState("#0E6B4F");
-  const [city, setCity] = useState("Testville");
+  const [city, setCity] = useState("");
   const [conf, setConf] = useState<ConferenceId>("HOR");
   if (!open) {
     return (
@@ -518,7 +518,7 @@ function AddSchool() {
       <input className="mt-2 h-12 w-full rounded-lg border border-border bg-bg px-3" value={name} onChange={(e) => setName(e.target.value)} placeholder="School name" />
       <div className="mt-2 grid grid-cols-2 gap-2">
         <input className="h-12 rounded-lg border border-border bg-bg px-3" value={mascot} onChange={(e) => setMascot(e.target.value)} placeholder="Mascot" />
-        <input className="h-12 rounded-lg border border-border bg-bg px-3" value={abbr} onChange={(e) => setAbbr(e.target.value)} placeholder="Abbr" />
+        <input className="h-12 rounded-lg border border-border bg-bg px-3" value={abbr} onChange={(e) => setAbbr(e.target.value)} placeholder="ABC" />
       </div>
       <input className="mt-2 h-12 w-full rounded-lg border border-border bg-bg px-3" value={city} onChange={(e) => setCity(e.target.value)} placeholder="City" />
       <div className="mt-2 flex items-center gap-2">
@@ -533,11 +533,16 @@ function AddSchool() {
         type="button"
         className="mt-3 min-h-12 w-full rounded-lg bg-accent font-semibold text-accent-fg"
         {...bindTap(() => {
+          if (!name.trim()) return;
           createSchool({ name, mascot, abbr, color, city, stateName: "US", conference: conf });
+          setName("");
+          setMascot("");
+          setAbbr("");
+          setCity("");
           setOpen(false);
         })}
       >
-        Put {name.trim() || "Test U"} on the board
+        Put {name.trim() || "the school"} on the board
       </button>
     </div>
   );
